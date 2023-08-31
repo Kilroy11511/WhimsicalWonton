@@ -21,11 +21,11 @@ st.write("The S&P ESG risk rating is a data-set made by Pritish Dugar, and provi
 #each person write a small biography here, with information like school,
 #interests, why you joined AI Camp
 
-st.text("Hi! My name is Thomas and I was the Instructor of the Whimsical Wontons. I am in my 4th year of college at Winona State University. I like to play board games and work out. I joined AI Camp because I believe in it's goals and mission to change the norm of teaching and learning.")
+st.write("Hi! My name is Thomas and I was the Instructor of the Whimsical Wontons. I am in my 4th year of college at Winona State University. I like to play board games and work out. I joined AI Camp because I believe in it's goals and mission to change the norm of teaching and learning.")
 
-st.text('My name is Dylan. Im going into my last year of highschool. I joined AI camp to learn about coding and develop skills I could use down the line. I like playing sports and hiking. ')
+st.write('My name is Dylan. Im going into my last year of highschool. I joined AI camp to learn about coding and develop skills I could use down the line. I like playing sports and hiking. ')
 
-st.text('My name is Siwar, and I am 17. I joined AI camp for a gist to inquire more on coding languages and data analytics. I have the summer off, so new informarion has its benefice, and I can tell it was worth it.')
+st.write('My name is Siwar, and I am 17. I joined AI camp for a gist to inquire more on coding languages and data analytics. I have the summer off, so new informarion has its benefice, and I can tell it was worth it.')
 
 #begin the eda
 df = pd.read_csv('https://raw.githubusercontent.com/Kilroy11511/WhimsicalWonton/main/SP%20500%20ESG%20Risk%20Ratings.csv')
@@ -63,15 +63,14 @@ st.plotly_chart(fig)
 fig = px.sunburst(df, path=["Sector", "Industry"], title="Breakdown of Industries Within each Sector")
 st.plotly_chart(fig)
 st.text('This graph is a sunburst chart. Sunburst charts specialize in showing how something can be broken down by multiple categories. In this case, we are breaking down the number of companies in the S&P 500 into sectors, and then further breaking down those sectors into industries as you look from the inside of the graph out. The sector with the most companies is the Financial Services sector with 49, and the largest industry in that is the Asset Management industry.')
-fig = px.box(df,x="Sector", y="Total ESG Risk score", title="Overview of Sector's Total ESG Risk Score")
 
 fig = px.box(df,x="Sector", y="Total ESG Risk score", title="Overview of Sector's Total ESG Risk Score")
 st.plotly_chart(fig)
-st.text('Shown here is a box plot, comparing the distribution of Total ESG Risk scores to their respective sectors. With a box plot, we can easily see the maximum and minimum scores for each sector, as well as the median, Q1, Q3 and even outliers. The trends on the graph suggest that Real Estate consistently has the lowest risk scores, while the Energy sector has higher scores. The Consumer Defensive, Industrials, and Energy sectors all have a wide range, suggesting that the companies in their sectors have a wide range of using ESG and non-ESG practices.')
+st.write('Shown here is a box plot, comparing the distribution of Total ESG Risk scores to their respective sectors. With a box plot, we can easily see the maximum and minimum scores for each sector, as well as the median, Q1, Q3 and even outliers. The trends on the graph suggest that Real Estate consistently has the lowest risk scores, while the Energy sector has higher scores. The Consumer Defensive, Industrials, and Energy sectors all have a wide range, suggesting that the companies in their sectors have a wide range of using ESG and non-ESG practices.')
 
 fig = px.density_heatmap(df,'Sector','Total ESG Risk score',color_continuous_scale='ylorrd', title = 'ESG Risk Similarites Within Sectors' )
 st.plotly_chart(fig)
-st.text('this Heatmap describes the Similarities within sectors of ESG scores. From this we can see that many sectors have scores that reflect similarities between companies in the same sector. A takeaway from this could be that some sectors are more likely to have high ESG risks and it has less to do with specific companies.')
+st.write('this Heatmap describes the Similarities within sectors of ESG scores. From this we can see that many sectors have scores that reflect similarities between companies in the same sector. A takeaway from this could be that some sectors are more likely to have high ESG risks and it has less to do with specific companies.')
 
 fig = px.density_heatmap(df,'Sector','Controversy Score',color_continuous_scale='ylorrd')
 st.plotly_chart(fig)
@@ -87,15 +86,15 @@ st.plotly_chart(fig)
 
 fig = px.box(df, x="Sector", y='ESG Risk Percentile', points = 'all', title = 'ESG Risk Percetiles With Outliers') #try swapping x and y here for a more "traditional" box plot look
 st.plotly_chart(fig)
-st.text('This box graph shows general trends of Risk percentiles based on Sectors. It also contains all companies as data points which allows for easy access of outlier data. The box graphs would suggest that certain sectors are similar in ESG percentiles while others are more likely to experience varience based on the individual company, but it can also be noted that some of the more varried sectors have less total companies to compare to making outliers skew the average ranges.')
+st.write('This box graph shows general trends of Risk percentiles based on Sectors. It also contains all companies as data points which allows for easy access of outlier data. The box graphs would suggest that certain sectors are similar in ESG percentiles while others are more likely to experience varience based on the individual company, but it can also be noted that some of the more varried sectors have less total companies to compare to making outliers skew the average ranges.')
 
 fig = px.histogram(df, 'Full Time Employees', 'Social Risk Score', histfunc='avg') #turn into average?
 st.plotly_chart(fig)
-st.text('This graph is a histogram. It shows the frequency of full time employees in ratio to avg of social risk score. The aggregated bars emphasizes on the high avg of social risk score when full time employees are less present. However, it is inconsisitant when it goes up to 1.5M and then higher than 2M. In those cases, the avg of social risk score goes up tremendously. The graph of those two variables is inconsistant and can not be tied to a factor.')
+st.write('This graph is a histogram. It shows the frequency of full time employees in ratio to avg of social risk score. The aggregated bars emphasizes on the high avg of social risk score when full time employees are less present. However, it is inconsisitant when it goes up to 1.5M and then higher than 2M. In those cases, the avg of social risk score goes up tremendously. The graph of those two variables is inconsistant and can not be tied to a factor.')
 
 fig = px.violin(df, x="ESG Risk Level", y="ESG Risk Percentile", points='all')
 st.plotly_chart(fig)
-st.text('The violin graph plots the ratio of ESG risk level over the ESG risk percentile, represented with oval kernels, denser in the middle and it narrows throughout the edges. It estimates that the higher the ESG risk level is, the higher ESG risk percentile escalates. Alternatively, the lower is the risk, the lesser is the percentile.')
+st.write('The violin graph plots the ratio of ESG risk level over the ESG risk percentile, represented with oval kernels, denser in the middle and it narrows throughout the edges. It estimates that the higher the ESG risk level is, the higher ESG risk percentile escalates. Alternatively, the lower is the risk, the lesser is the percentile.')
 
 #Conclusion
 st.write('The data analyzed shows that ESG ratings and companies sectors are related, although that is not the only factor at play while calculating ratings. This information also shows certian sectors have tendencies towards higher or lower ESG scores while others are company specific. Based on this information the least at risk sectors are Realty and Technology while the most at risk sector would be Energy. Both Industrials and Consumer Defensive sectors have large variety within the sectors amoung ESG percentiles. The idea that companies in the same sector have similar ESG ratings is based on which sector you examine, which means some sectors are more volatile then others.')
