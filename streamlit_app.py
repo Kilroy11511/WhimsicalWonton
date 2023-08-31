@@ -53,7 +53,7 @@ def removePerText(s):
 
     return out
 
-df.rename({"Total ESG Risk score": "Total ESG Risk Score"})
+df.rename({"Total ESG Risk score": "Total ESG Risk Score"}, inplace=True)
 
 df['ESG Risk Percentile'] = df['ESG Risk Percentile'].apply(removePerText).astype('int32')
 st.dataframe(df.head())
