@@ -25,7 +25,7 @@ st.text("Hi! My name is Thomas and I was the Instructor of the Whimsical Wontons
 
 st.text('My name is Dylan. Im going into my last year of highschool. I joined AI camp to learn about coding and develop skills I could use down the line. I like playing sports and hiking. ')
 
-st.text('My name is Siwar, and I am 17. I joined AI camp for a gist to inquire more on coding')
+st.text('My name is Siwar, and I am 17. I joined AI camp for a gist to inquire more on coding languages and data analytics. I have the summer off, so new informarion has its benefice, and I can tell it was worth it.')
 
 #begin the eda
 df = pd.read_csv('SP 500 ESG Risk Ratings.csv')
@@ -53,39 +53,40 @@ def removePerText(s):
 
     return out
 
-st.dataframe(df['ESG Risk Percentile'] = df['ESG Risk Percentile'].apply(removePerText).astype('int32'))
+df['ESG Risk Percentile'] = df['ESG Risk Percentile'].apply(removePerText).astype('int32')
 st.dataframe(df.head())
 
 df_corr = df.corr(numeric_only=True)
 fig = px.imshow(df_corr)
-st.dataframe(fig)
+st.plotly_chart(fig)
 
 fig = px.sunburst(df, path=["Sector", "Industry"], title="Breakdown of Industries Within each Sector")
-st.dataframe(fig)
+st.plotly_chart(fig)
 st.text('This graph is a sunburst chart. Sunburst charts specialize in showing how something can be broken down by multiple categories. In this case, we are breaking down the number of companies in the S&P 500 into sectors, and then further breaking down those sectors into industries as you look from the inside of the graph out. The sector with the most companies is the Financial Services sector with 49, and the largest industry in that is the Asset Management industry.')
 fig = px.box(df,x="Sector", y="Total ESG Risk score", title="Overview of Sector's Total ESG Risk Score")
-st.dataframe(fig)
-
+fig = px.box(df,x="Sector", y="Total ESG Risk score", title="Overview of Sector's Total ESG Risk Score")
+st.plotly_chart(fig)
+s
 fig = px.density_heatmap(df,'Sector','Total ESG Risk score',color_continuous_scale='ylorrd', title = 'ESG Risk Similarites Within Sectors' )
-st.dataframe(fig)
-
+st.plotly_chart(fig)
+st.text('')
 fig = px.density_heatmap(df,'Sector','Controversy Score',color_continuous_scale='ylorrd')
-st.dataframe(fig)
+st.plotly_chart(fig)
 
 fig = px.density_heatmap(df,'Sector','Social Risk Score',color_continuous_scale='ylorrd' )
-st.dataframe(fig)
+st.plotly_chart(fig)
 
 fig = px.density_heatmap(df,'Sector','Environment Risk Score',color_continuous_scale='ylorrd' )
-st.dataframe(fig)
+st.plotly_chart(fig)
 
 fig = px.density_heatmap(df,'Sector','Governance Risk Score',color_continuous_scale='ylorrd' ) #
-st.dataframe(fig)
+st.plotly_chart(fig)
 
 fig = px.box(df, x="Sector", y='ESG Risk Percentile', points = 'all', title = 'ESG Risk Percetiles With Outliers') #try swapping x and y here for a more "traditional" box plot look
-st.dataframe(fig)
+st.plotly_chart(fig)
 
 fig = px.histogram(df, 'Full Time Employees', 'Social Risk Score', histfunc='avg') #turn into average?
-st.dataframe(fig)
+st.plotly_chart(fig)
 
 fig = px.violin(df, x="ESG Risk Level", y="ESG Risk Percentile", points='all')
-st.dataframe(fig)
+st.plotly_chart(fig)
