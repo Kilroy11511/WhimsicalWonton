@@ -84,7 +84,8 @@ fig = px.histogram(df, 'Full Time Employees', 'Social Risk Score', histfunc='avg
 st.plotly_chart(fig)
 st.write('This graph is a histogram. It shows the frequency of full time employees in ratio to avg of social risk score. The aggregated bars emphasizes on the high avg of social risk score when full time employees are less present. However, it is inconsisitant when it goes up to 1.5M and then higher than 2M. In those cases, the avg of social risk score goes up tremendously. The graph of those two variables is inconsistant and can not be tied to a factor.')
 
-fig = px.violin(df, x="ESG Risk Level", y="ESG Risk Percentile", points='all')
+option1: str = st.selectbox("Pick a column for the y-axis:", ('ESG Risk Percentile', 'Social Risk Score', 'Environment Risk Score', 'Governance Risk Score'))
+fig = px.violin(df, x="ESG Risk Level", y=option1, points='all', title = option + ' Within ESG Risk Level')
 st.plotly_chart(fig)
 st.write('The violin graph plots the ratio of ESG risk level over the ESG risk percentile, represented with oval kernels, denser in the middle and it narrows throughout the edges. It estimates that the higher the ESG risk level is, the higher ESG risk percentile escalates. Alternatively, the lower is the risk, the lesser is the percentile.')
 
