@@ -87,6 +87,7 @@ st.plotly_chart(fig)
 
 option: str = st.selectbox("Pick a column for the y-axis:", ('Total ESG Risk score', 'Controversy Score', 'Social Risk Score', 'Environment Risk Score', 'Governance Risk Score'))
 fig = px.density_heatmap(df, x='Sector', y=option, color_continuous_scale='ylorrd' )
+st.plotly_chart(fig)
 st.write('This heatmap describes the similarities within sectors of ESG scores. From this we can see that many sectors have scores that reflect similarities between companies in the same sector. A takeaway from this could be that some sectors are more likely to have high ESG risks and it has less to do with specific companies.')
 
 
