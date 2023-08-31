@@ -68,25 +68,8 @@ fig = px.box(df,x="Sector", y="Total ESG Risk score", title="Overview of Sector'
 st.plotly_chart(fig)
 st.write('Shown here is a box plot, comparing the distribution of Total ESG Risk scores to their respective sectors. With a box plot, we can easily see the maximum and minimum scores for each sector, as well as the median, Q1, Q3 and even outliers. The trends on the graph suggest that Real Estate consistently has the lowest risk scores, while the Energy sector has higher scores. The Consumer Defensive, Industrials, and Energy sectors all have a wide range, suggesting that the companies in their sectors have a wide range of using ESG and non-ESG practices.')
 
-"""
-fig = px.density_heatmap(df,'Sector','Total ESG Risk score',color_continuous_scale='ylorrd', title = 'ESG Risk Similarites Within Sectors' )
-st.plotly_chart(fig)
-
-fig = px.density_heatmap(df,'Sector','Controversy Score',color_continuous_scale='ylorrd')
-st.plotly_chart(fig)
-
-fig = px.density_heatmap(df,'Sector','Social Risk Score',color_continuous_scale='ylorrd' )
-st.plotly_chart(fig)
-
-fig = px.density_heatmap(df,'Sector','Environment Risk Score',color_continuous_scale='ylorrd' )
-st.plotly_chart(fig)
-
-fig = px.density_heatmap(df,'Sector','Governance Risk Score',color_continuous_scale='ylorrd' ) #
-st.plotly_chart(fig)
-"""
-
 option: str = st.selectbox("Pick a column for the y-axis:", ('Total ESG Risk score', 'Controversy Score', 'Social Risk Score', 'Environment Risk Score', 'Governance Risk Score'))
-fig = px.density_heatmap(df, x='Sector', y=option, color_continuous_scale='ylorrd' )
+fig = px.density_heatmap(df, x='Sector', y=option, color_continuous_scale='ylorrd', title = option.title() + ' Within Sectors')
 st.plotly_chart(fig)
 st.write('This heatmap describes the similarities within sectors of ESG scores. From this we can see that many sectors have scores that reflect similarities between companies in the same sector. A takeaway from this could be that some sectors are more likely to have high ESG risks and it has less to do with specific companies.')
 
