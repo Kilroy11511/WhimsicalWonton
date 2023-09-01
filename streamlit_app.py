@@ -90,7 +90,7 @@ st.plotly_chart(fig)
 st.write('The violin graph plots the ratio of ESG risk level over the ESG risk percentile, represented with oval kernels, denser in the middle and it narrows throughout the edges. It estimates that the higher the ESG risk level is, the higher ESG risk percentile escalates. Alternatively, the lower is the risk, the lesser is the percentile.')
 
 st.title("AI Model")
-modelChoice = st.radio("What would you like to predict?", options=["Sector", "ESG Risk Percentile", captions=["KNN Classifier", "Polynomial Regression"]])
+modelChoice = st.radio("What would you like to predict?", options=["Sector", "ESG Risk Percentile"], captions=["KNN Classifier", "Polynomial Regression"])
 
 with st.form("ai_form"):
   fte = st.number_input("Number of Full-Time Employees")
