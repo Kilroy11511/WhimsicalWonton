@@ -85,9 +85,28 @@ st.plotly_chart(fig)
 st.write('This graph is a histogram. It shows the frequency of full time employees in ratio to avg of social risk score. The aggregated bars emphasizes on the high avg of social risk score when full time employees are less present. However, it is inconsisitant when it goes up to 1.5M and then higher than 2M. In those cases, the avg of social risk score goes up tremendously. The graph of those two variables is inconsistant and can not be tied to a factor.')
 
 option1: str = st.selectbox("Pick a column for the y-axis:", ('ESG Risk Percentile', 'Social Risk Score', 'Environment Risk Score', 'Governance Risk Score'))
-fig = px.violin(df, x="ESG Risk Level", y=option1, points='all', title = option + ' Within ESG Risk Level')
+fig = px.violin(df, x="ESG Risk Level", y=option1, points='all', title = option1 + ' Within ESG Risk Level')
 st.plotly_chart(fig)
 st.write('The violin graph plots the ratio of ESG risk level over the ESG risk percentile, represented with oval kernels, denser in the middle and it narrows throughout the edges. It estimates that the higher the ESG risk level is, the higher ESG risk percentile escalates. Alternatively, the lower is the risk, the lesser is the percentile.')
+
+st.title("AI Model")
+modelChoice = st.radio("What would you like to predict?", options=["Sector", "ESG Risk Percentile", captions=["KNN Classifier", "Polynomial Regression"]])
+
+with st.form("ai_form"):
+  fte = st.number_input("Number of Full-Time Employees")
+  tesgrs = st.number_input("Total ESG Risk Score")
+  ers = st.number_input("Environment Risk Score")
+  grs = st.number_input("Governance Risk Score")
+  srs = st.number_input("Social Risk Score")
+  cs = st.number_input("Controversy Score")
+  esgrp = st.number_input("ESG Risk Percentile")
+
+  if modelChoice == "Sector":
+    esgrp = st.number_input("ESG Risk Percentile")
+
+  st.form_submit_button("Submit")
+    
+    
 
 #Conclusion
 st.write('The data analyzed shows that ESG ratings and companies sectors are related, although that is not the only factor at play while calculating ratings. This information also shows certian sectors have tendencies towards higher or lower ESG scores while others are company specific. Based on this information the least at risk sectors are Realty and Technology while the most at risk sector would be Energy. Both Industrials and Consumer Defensive sectors have large variety within the sectors amoung ESG percentiles. The idea that companies in the same sector have similar ESG ratings is based on which sector you examine, which means some sectors are more volatile then others.')
