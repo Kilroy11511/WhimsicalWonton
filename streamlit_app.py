@@ -72,7 +72,7 @@ my_knc.fit(feature, target)
 target = df['ESG Risk Percentile']
 feature = df[['Full Time Employees', 'Total ESG Risk Score', 'Environment Risk Score', 'Governance Risk Score', 'Social Risk Score', 'Controversy Score']]
 polyLin = Pipeline([('poly', PolynomialFeatures(degree=3)), ('linear', LinearRegression(fit_intercept=False))])
-polyLin = polyLin.fit(feature, target)
+polyLin.fit(feature, target)
 
 
 df_corr = df.corr(numeric_only=True)
@@ -129,7 +129,8 @@ if modelChoice == "Sector":
   st.text("Our prediction: " + prediction)
 else:
   #use regressor
-  pass
+  prediction = polyLin.predict([fte, tesgrs, ers, grs, srs, cs])
+  st.text("Our prediction: " + str(prediction))
 
 #Conclusion
 st.write('The data analyzed shows that ESG ratings and companies sectors are related, although that is not the only factor at play while calculating ratings. This information also shows certian sectors have tendencies towards higher or lower ESG scores while others are company specific. Based on this information the least at risk sectors are Realty and Technology while the most at risk sector would be Energy. Both Industrials and Consumer Defensive sectors have large variety within the sectors amoung ESG percentiles. The idea that companies in the same sector have similar ESG ratings is based on which sector you examine, which means some sectors are more volatile then others.')
