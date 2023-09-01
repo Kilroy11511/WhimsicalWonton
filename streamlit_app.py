@@ -99,7 +99,6 @@ with st.form("ai_form"):
   grs = st.number_input("Governance Risk Score")
   srs = st.number_input("Social Risk Score")
   cs = st.number_input("Controversy Score")
-  esgrp = st.number_input("ESG Risk Percentile")
 
   if modelChoice == "Sector":
     esgrp = st.number_input("ESG Risk Percentile")
