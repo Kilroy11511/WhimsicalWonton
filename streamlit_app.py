@@ -125,11 +125,28 @@ with st.form("ai_form"):
 
 if modelChoice == "Sector":
   #use classifier
-  prediction = my_knc.predict([fte, tesgrs, ers, grs, srs, cs, esgrp])
+  data = {
+    "Full-Time Employees": fte,
+    "Total ESG Risk Score": tesgrs,
+    "Environment Risk Score": ers,
+    "Governance Risk Score": grs,
+    "Social Risk Score": srs,
+    "Controversy Score": cs,
+    "ESG Risk Percentile": esgrp
+  }
+  prediction = my_knc.predict(pd.DataFrame([data]))
   st.text("Our prediction: " + prediction)
 else:
   #use regressor
-  prediction = polyLin.predict([fte, tesgrs, ers, grs, srs, cs])
+  data = {
+    "Full-Time Employees": fte,
+    "Total ESG Risk Score": tesgrs,
+    "Environment Risk Score": ers,
+    "Governance Risk Score": grs,
+    "Social Risk Score": srs,
+    "Controversy Score": cs,
+  }
+  prediction = polyLin.predict(pd.DataFrame([data]))
   st.text("Our prediction: " + str(prediction))
 
 #Conclusion
