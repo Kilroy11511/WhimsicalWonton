@@ -1,4 +1,7 @@
 streamlit
 plotly
 pandas
-sklearn
+sklearn.neighbors
+sklearn.preprocessing
+sklearn.linear_model
+sklearn.pipeline
