@@ -106,7 +106,7 @@ fig = px.violin(df, x="ESG Risk Level", y=option1, points='all', title = option1
 st.plotly_chart(fig)
 st.write('The violin graph plots the ratio of ESG risk level over the ESG risk percentile, represented with oval kernels, denser in the middle and it narrows throughout the edges. It estimates that the higher the ESG risk level is, the higher ESG risk percentile escalates. Alternatively, the lower is the risk, the lesser is the percentile.')
 
-st.title("AI Model")
+st.header("AI Model")
 modelChoice = st.radio("What would you like to predict?", options=["Sector", "ESG Risk Percentile"], captions=["KNN Classifier", "Polynomial Regression"])
 
 with st.form("ai_form"):
@@ -135,7 +135,7 @@ if modelChoice == "Sector":
     "ESG Risk Percentile": esgrp
   }
   prediction = my_knc.predict(pd.DataFrame([data]))
-  st.text("Our prediction: " + prediction)
+  st.text("Our prediction: " + prediction[0])
 else:
   #use regressor
   data = {
@@ -147,7 +147,8 @@ else:
     "Controversy Score": cs,
   }
   prediction = polyLin.predict(pd.DataFrame([data]))
-  st.text("Our prediction: " + str(prediction))
+  st.text("Our prediction: " + str(prediction[0]))
 
 #Conclusion
+st.header("Conclusion")
 st.write('The data analyzed shows that ESG ratings and companies sectors are related, although that is not the only factor at play while calculating ratings. This information also shows certian sectors have tendencies towards higher or lower ESG scores while others are company specific. Based on this information the least at risk sectors are Realty and Technology while the most at risk sector would be Energy. Both Industrials and Consumer Defensive sectors have large variety within the sectors amoung ESG percentiles. The idea that companies in the same sector have similar ESG ratings is based on which sector you examine, which means some sectors are more volatile then others.')
