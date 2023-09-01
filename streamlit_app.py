@@ -92,13 +92,13 @@ st.plotly_chart(fig)
 st.write('This heatmap describes the similarities within sectors of ESG scores. From this we can see that many sectors have scores that reflect similarities between companies in the same sector. A takeaway from this could be that some sectors are more likely to have high ESG risks and it has less to do with specific companies.')
 
 
-fig = px.box(df, x="Sector", y='ESG Risk Percentile', points = 'all', title = 'ESG Risk Percetiles With Outliers') #try swapping x and y here for a more "traditional" box plot look
+fig = px.box(df, x="Sector", y='ESG Risk Percentile', points = 'all', title = 'ESG Risk Percentiles With Outliers') #try swapping x and y here for a more "traditional" box plot look
 st.plotly_chart(fig)
-st.write('This box graph shows general trends of Risk percentiles based on Sectors. It also contains all companies as data points which allows for easy access of outlier data. The box graphs would suggest that certain sectors are similar in ESG percentiles while others are more likely to experience varience based on the individual company, but it can also be noted that some of the more varried sectors have less total companies to compare to making outliers skew the average ranges.')
+st.write('This box graph shows general trends of Risk percentiles based on sectors. It also contains all companies as data points which allows for easy access of outlier data. The box graphs would suggest that certain sectors are similar in ESG percentiles while others are more likely to experience varience based on the individual company, but it can also be noted that some of the more varied sectors have less total companies to compare to, making outliers skew the average ranges.')
 
 fig = px.histogram(df, 'Full Time Employees', 'Social Risk Score', histfunc='avg') #turn into average?
 st.plotly_chart(fig)
-st.write('This graph is a histogram. It shows the frequency of full time employees in ratio to avg of social risk score. The aggregated bars emphasizes on the high avg of social risk score when full time employees are less present. However, it is inconsisitant when it goes up to 1.5M and then higher than 2M. In those cases, the avg of social risk score goes up tremendously. The graph of those two variables is inconsistant and can not be tied to a factor.')
+st.write('This graph is a histogram. It shows the frequency of full time employees in ratio to average of social risk score. The aggregated bars emphasizes on the high average of social risk score when full time employees are less present. However, it is inconsisitant when it goes up to 1.5M and then higher than 2M. In those cases, the average of social risk score goes up tremendously. The graph of those two variables is inconsistant and cannot be tied to a factor.')
 
 option1: str = st.selectbox("Pick a column for the y-axis:", ('ESG Risk Percentile', 'Social Risk Score', 'Environment Risk Score', 'Governance Risk Score'))
 fig = px.violin(df, x="ESG Risk Level", y=option1, points='all', title = option1 + ' Within ESG Risk Level')
