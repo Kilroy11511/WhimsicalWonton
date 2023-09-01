@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import Pipeline
 
 #look for more information here https://docs.streamlit.io/library/cheatsheet
 # ---------------------------------------------------------------------
@@ -58,6 +62,19 @@ df.rename(columns={"Total ESG Risk score": "Total ESG Risk Score"}, inplace=True
 df['ESG Risk Percentile'] = df['ESG Risk Percentile'].apply(removePerText).astype('int32')
 st.dataframe(df.head())
 
+#setting up classification model
+target = df['Sector']
+feature = df[['Full Time Employees', 'Total ESG Risk Score', 'Environment Risk Score', 'Governance Risk Score', 'Social Risk Score', 'Controversy Score', 'ESG Risk Percentile']]
+my_knc = KNeighborsClassifier(7)
+my_knc.fit(feature, target)
+
+#setting up regressor model
+target = df['ESG Risk Percentile']
+feature = df[['Full Time Employees', 'Total ESG Risk Score', 'Environment Risk Score', 'Governance Risk Score', 'Social Risk Score', 'Controversy Score']]
+polyLin = Pipeline([('poly', PolynomialFeatures(degree=3)), ('linear', LinearRegression(fit_intercept=False))])
+polyLin = polyLin.fit(feature, target)
+
+
 df_corr = df.corr(numeric_only=True)
 fig = px.imshow(df_corr)
 st.plotly_chart(fig)
@@ -105,7 +122,14 @@ with st.form("ai_form"):
 
   st.form_submit_button("Submit")
     
-    
+
+if modelChoice == "Sector":
+  #use classifier
+  prediction = my_knc.predict([fte, tesgrs, ers, grs, srs, cs, esgrp])
+  st.text("Our prediction: " + prediction)
+else:
+  #use regressor
+  pass
 
 #Conclusion
 st.write('The data analyzed shows that ESG ratings and companies sectors are related, although that is not the only factor at play while calculating ratings. This information also shows certian sectors have tendencies towards higher or lower ESG scores while others are company specific. Based on this information the least at risk sectors are Realty and Technology while the most at risk sector would be Energy. Both Industrials and Consumer Defensive sectors have large variety within the sectors amoung ESG percentiles. The idea that companies in the same sector have similar ESG ratings is based on which sector you examine, which means some sectors are more volatile then others.')
