@@ -16,7 +16,7 @@ from sklearn.pipeline import Pipeline
 
 
 #adding title
-st.title("Whimsmical Wontons")
+st.title("Whimsical Wontons")
 
 #add an initial description / introduction here
 st.write("The S&P ESG risk rating is a data-set made by Pritish Dugar, and provided by Sustainalytics. It is a recent search on how ESG ratings and companie sectors are related to each other. This valuable source of research will lead us to understand how important some factors are to different economic sectors such as environmental impact, company’s governance structure and controversies associated with the company’s ESG practices. Our analysis will tell us of which sector is improverished, hence more prominancy will be given it once known about.")
