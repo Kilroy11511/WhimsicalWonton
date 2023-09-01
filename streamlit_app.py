@@ -126,7 +126,7 @@ with st.form("ai_form"):
 if modelChoice == "Sector":
   #use classifier
   data = {
-    "Full-Time Employees": fte,
+    "Full Time Employees": fte,
     "Total ESG Risk Score": tesgrs,
     "Environment Risk Score": ers,
     "Governance Risk Score": grs,
@@ -139,7 +139,7 @@ if modelChoice == "Sector":
 else:
   #use regressor
   data = {
-    "Full-Time Employees": fte,
+    "Full Time Employees": fte,
     "Total ESG Risk Score": tesgrs,
     "Environment Risk Score": ers,
     "Governance Risk Score": grs,
