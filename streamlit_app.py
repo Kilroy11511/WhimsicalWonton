@@ -74,10 +74,9 @@ feature = df[['Full Time Employees', 'Total ESG Risk Score', 'Environment Risk S
 polyLin = Pipeline([('poly', PolynomialFeatures(degree=3)), ('linear', LinearRegression(fit_intercept=False))])
 polyLin.fit(feature, target)
 
-
-df_corr = df.corr(numeric_only=True)
-fig = px.imshow(df_corr)
-st.plotly_chart(fig)
+#df_corr = df.corr(numeric_only=True)
+#fig = px.imshow(df_corr)
+#st.plotly_chart(fig)
 
 fig = px.sunburst(df, path=["Sector", "Industry"], title="Breakdown of Industries Within each Sector")
 st.plotly_chart(fig)
